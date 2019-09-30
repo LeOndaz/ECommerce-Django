@@ -267,7 +267,7 @@
 													<span>
 
 												<script>
-													    $('.add_to_cart_functionality').get({{ forloop.counter0 }}).onclick = function (event) {
+													    $('.product_extras').children('.add_to_cart_functionality').get({{ forloop.counter0 }}).onclick = function (event) {
 															event.preventDefault()
                                                             $.ajax({
                                                                 type: 'POST',

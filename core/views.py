@@ -67,7 +67,11 @@ class AddToCartView(LoginRequiredMixin, View):
 				order.save()
 				print('2nd part')
 				# QUANTITY INCREASE ( USE AJAX TO RAISE IT IN FRONT END )
-				return HttpResponse('QT', status=204)
+				return JsonResponse({
+					'quantity': str(cart_item.quantity),
+					'cart_item_total': str(cart_item.get_final_price()),
+					'order_total': str(order.get_total())
+				})
 
 			except ObjectDoesNotExist:
 				cart_item = CartItem.objects.create(product=product)
