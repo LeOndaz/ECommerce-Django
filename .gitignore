@@ -1,3 +1,5 @@
+config.cfg
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -92,6 +94,7 @@ ipython_config.py
 #Pipfile.lock
 
 # celery beat schedule file
+
 celerybeat-schedule
 
 # SageMath parsed files
