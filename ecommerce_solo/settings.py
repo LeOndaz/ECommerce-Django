@@ -136,8 +136,8 @@ AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_FILE_OVERWRITE = False
 AWS_DEFAULT_ACL = None
 
-DEFAULT_FILE_STORAGE = 'myproject.s3utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'myproject.s3utils.StaticRootS3BotoStorage'
+DEFAULT_FILE_STORAGE = 'ecommerce_solo.s3utils.MediaRootS3BotoStorage'
+STATICFILES_STORAGE = 'ecommerce_solo.s3utils.StaticRootS3BotoStorage'
 
 
 django_heroku.settings(locals())
