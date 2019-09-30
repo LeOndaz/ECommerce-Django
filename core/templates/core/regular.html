@@ -1,8 +1,8 @@
 {% extends 'core/index.html' %}
 {% load static %}
 {% block extra_head %}
-	<link rel="stylesheet" type="text/css" href="styles/regular_styles.css">
-	<link rel="stylesheet" type="text/css" href="styles/regular_responsive.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/regular_styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/regular_responsive.css' %}">
 {% endblock extra_head %}
 
 {% block content %}
@@ -53,5 +53,5 @@
 {% endblock content %}
 
 {% block extra_scripts %}
-	<script src="js/regular_custom.js"></script>
+	<script src="{% static 'js/regular_custom.js' %}"></script>
 {% endblock extra_scripts %}

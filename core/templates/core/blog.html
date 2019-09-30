@@ -4,8 +4,8 @@
 
 {% include 'core/styles.html' %}
 {% block extra_head %}
-	<link rel="stylesheet" type="text/css" href="styles/blog_styles.css">
-	<link rel="stylesheet" type="text/css" href="styles/blog_responsive.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/blog_styles.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles/blog_responsive.css' %}">
 {% endblock extra_head %}
 
 {% block content %}
@@ -125,8 +125,8 @@
 
 
 {% block extra_scripts %}
-	<script src="plugins/parallax-js-master/parallax.min.js"></script>
-	<script src="js/blog_custom.js"></script>
+	<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+	<script src="{% static 'js/blog_custom.js' %}"></script>
 {% endblock extra_scripts %}
 
 
