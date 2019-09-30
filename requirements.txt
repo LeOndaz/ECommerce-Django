@@ -1,3 +1,4 @@
+boto==2.49.0
 boto3==1.9.238
 botocore==1.12.238
 dj-database-url==0.5.0
