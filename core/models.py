@@ -26,7 +26,7 @@ class Product(models.Model):
 	description = models.TextField(default='dummy text dummy text dummy text dummy text dummy text')
 	category = models.CharField(max_length=4, choices=CATEGORY_CHOICES)
 
-	product_id = models.SlugField(max_length=20, validators=[RegexValidator(regex='[A-Za-z0-9]{20}$')], blank=True, unique=True)
+	product_id = models.SlugField(max_length=80, validators=[RegexValidator(regex='[A-Za-z0-9]{20}$')], blank=True, unique=True)
 
 	previous_price = models.IntegerField(blank=True, null=True)
 	current_price = models.IntegerField()
