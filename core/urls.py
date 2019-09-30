@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import MainPageView, ProductDetailView, CartView, AddToCartView, CartDetailsAPI, ShopView
+from .views import MainPageView, ProductDetailView, CartView, AddToCartView, CartDetailsAPI, ShopView, RemoveFromCartView
 from django.conf import settings
 from django.conf.urls.static import static
 from django.utils.text import slugify
@@ -14,6 +14,8 @@ urlpatterns = [
 	# API
 	path('cart/endpoint', CartDetailsAPI.as_view(), name='cart-details-api'),
 	path('add-to-cart/', AddToCartView.as_view(), name='add-to-cart'),
+	path('remove-from-cart/', RemoveFromCartView.as_view(), name='remove-from-cart'),
+
 ]
 
 if settings.DEBUG:

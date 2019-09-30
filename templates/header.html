@@ -112,7 +112,11 @@
 									</div>
 									<div class="cart_content">
 										<div class="cart_text"><a href="{% url 'core:cart' %}">Cart</a></div>
-										<div class="cart_price">${{ user|order_total }}</div>
+										{% if user.is_authenticated %}
+											<div class="cart_price">${{ user|order_total }}</div>
+										{% else %}
+											<div class="cart_price">Empty</div>
+										{% endif %}
 									</div>
 								</div>
 							</div>

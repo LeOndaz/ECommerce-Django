@@ -88,12 +88,47 @@ class AddToCartView(LoginRequiredMixin, View):
 			return HttpResponse('CTC', status=204)
 
 
-class CartDetailsAPI(View):
+class RemoveFromCartView(LoginRequiredMixin, View):
+	def post(self, *args, **kwargs):
+		print(self.request.POST)
+		try:
+			product_id = self.request.POST['product_id']
+		except:
+			return redirect('/')
+
+		product = Product.objects.get(product_id=product_id)
+		order_qs = Order.objects.filter(user=self.request.user, is_ordered=False)
+		if order_qs.exists():
+			order = order_qs[0]
+			cart_item = order.items.get(product=product, is_ordered=False)
+			print('working')
+			if cart_item.quantity == 1:
+				print('2')
+				cart_item.delete()
+				order.save()
+				# delete item from cart
+				return JsonResponse({'quantity': '0'})
+			else:
+				print('2')
+				cart_item.quantity -= 1
+				cart_item.save()
+				order.save()
+				return JsonResponse({
+					'quantity': str(cart_item.quantity),
+					'cart_item_total': str(cart_item.get_final_price()),
+					'order_total': str(order.get_total())
+				})
+		else:
+			return HttpResponse('No order')
+
+
+class CartDetailsAPI(LoginRequiredMixin, View):
 	def get(self, *args, **kwargs):
 		if self.request.user.is_authenticated:
 			order_qs = Order.objects.filter(user=self.request.user, is_ordered=False)
 			if order_qs.exists():
 				data = {
-					'total': order_qs[0].get_total()
+					'total': order_qs[0].get_total(),
+					'count': order_qs[0].get_item_count(),
 				}
 				return JsonResponse(data)
