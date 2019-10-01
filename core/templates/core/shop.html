@@ -93,7 +93,7 @@
 
 					<div class="shop_content">
 						<div class="shop_bar clearfix">
-							<div class="shop_product_count"><span>186</span> products found</div>
+							<div class="shop_product_count">Showing <span>{{ product_list.count }}</span> product out of <span>{{ products_count }}</span></div>
 							<div class="shop_sorting">
 								<span>Sort by:</span>
 								<ul>
@@ -119,7 +119,7 @@
 								<div class="product_border"></div>
 								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{product.image.url}}" alt=""></div>
 								<div class="product_content">
-									<div class="product_price">{{product.current_price}}</div>
+									<div class="product_price"><del class="text-muted small">{{ product.previous_price }}</del> {{product.current_price}}</div>
 									<div class="product_name"><div><a href="{% url 'core:product-page' product.product_id %}" tabindex="0">{{product.title|truncatechars:'13'}}</a></div></div>
 								</div>
 								<div class="product_fav"><i class="fas fa-heart"></i></div>
@@ -127,6 +127,10 @@
 									<li class="product_mark product_discount">-25%</li>
 									<li class="product_mark product_new">new</li>
 								</ul>
+
+								<button style="max-width: 88%" class="btn btn-primary btn-sm btn-block mt-2">
+									<a href="" style="color: white">Add to Cart</a>
+								</button>
 							</div>
 
 						{% endfor %}
@@ -135,20 +139,52 @@
 
 					{% if is_paginated %}
 						<!-- Shop Page Navigation -->
-
 						<div class="shop_page_nav d-flex flex-row">
-							<div class="page_prev d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-left"></i></div>
+						{% if page_obj.has_previous %}
+							{% if page_obj.previous_page_number != 1 %}
+
+							<button class="btn page_next d-flex flex-column align-items-center justify-content-center"><a href="?page={{ page_obj.previous_page_number }}"><i class="fas fa-chevron-left"></i></a></button>
+
+							{% endif %}
+						{% endif %}
+
 							<ul class="page_nav d-flex flex-row">
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">...</a></li>
-								<li><a href="#">21</a></li>
+
+								{% if page_obj.has_previous %}
+									{% if page_obj.previous_page_number != 1 %}
+										<li><a href="?page=1">First</a></li>
+										<li><a href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a></li>
+
+									{% else %}
+										<li><a href="?page=1">First</a></li>
+
+									{% endif %}
+
+								{% endif %}
+								<li class=""><a>{{ page_obj.number }} </a></li>
+								{% if page_obj.has_next %}
+
+									{% if page_obj.number != paginator.num_pages  %}
+											<li><a href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a></li>
+											<li><a href="?page={{ paginator.num_pages }}">Last</a></li>
+
+
+									{% endif %}
+
+
+								{% endif %}
 							</ul>
-							<div class="page_next d-flex flex-column align-items-center justify-content-center"><i class="fas fa-chevron-right"></i></div>
+
+						{% if page_obj.has_next %}
+							{% if page_obj.number != paginator.num_pages %}
+								<button class="btn page_next d-flex flex-column align-items-center justify-content-center"><a class="" href="?page={{ page_obj.next_page_number }}" ><i class="fas fa-chevron-right"></i></a></button>
+							{% endif %}
+
+						{% endif %}
+
 						</div>
 
-					{% endif %}
+					{% endif  %}
 
 					</div>
 

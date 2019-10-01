@@ -21,11 +21,11 @@ export_as_csv.short_description = 'Export as CSV'
 
 class ProductAdmin(ModelAdmin):
 	fields = ['title', 'description', 'product_id' , 'current_price', 'previous_price', 'label', 'category', 'image', 'is_deal_of_the_week']
-	list_display = ['title', 'label', 'current_price']
+	list_display = ['title', 'label','category', 'current_price']
 	list_display_links = ['title']
 	list_filter = ['is_deal_of_the_week', 'label']
 	actions = [export_as_csv]
-	list_editable = ['label']
+	list_editable = ['label', 'category']
 	search_fields = ['title', 'product_id']
 	readonly_fields = ['product_id']
 

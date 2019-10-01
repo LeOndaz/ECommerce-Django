@@ -93,12 +93,6 @@
 
 										<script>
 
-											function UpdateUI(iterator, response){
-												$('.cart_item_count').get(iterator).innerText = response['quantity'];
-                                                $('.cart_item_total_price').get(iterator).innerText = response['cart_item_total'];
-												$('.order_total_amount').get(0).innerText = response['order_total'];
-												$('.cart_price').get(0).innerText = response['order_total']
-											}
 
 											$('.cart_item_quantity').find('.remove-from-cart-functionality').get({{ forloop.counter0 }}).onclick = function(event){
 											    event.preventDefault();
@@ -111,11 +105,14 @@
 													},
 													success: function(response){
 														if(response['quantity'] !== '0'){
-														    UpdateUI({{ forloop.counter0 }}, response)
+														    UpdateCartUI({{ forloop.counter0 }}, response);
+															UpdateNAVBAR();
 														} else{
 														    $('.cart_item_count').eq({{ forloop.counter0 }}).parent().parent().parent().parent().next().remove();
-														    $('.cart_item_count').eq({{ forloop.counter0 }}).parent().parent().parent().parent().remove()
+														    $('.cart_item_count').eq({{ forloop.counter0 }}).parent().parent().parent().parent().remove();
+									                        $('.order_total_amount').get(0).innerText = response['order_total'];
 
+															UpdateNAVBAR();
 														}
 													}
 												})
@@ -131,7 +128,8 @@
 													    csrfmiddlewaretoken: "{{ csrf_token }}"
 												    },
 													success: function(response) {
-                                                        UpdateUI({{ forloop.counter0 }}, response)
+                                                        UpdateCartUI({{ forloop.counter0 }}, response)
+														UpdateNAVBAR();
 												    }
 											    })
 											}

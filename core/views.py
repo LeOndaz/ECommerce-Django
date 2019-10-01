@@ -21,6 +21,9 @@ class ShopView(ListView):
 	paginate_by = 15
 	model = Product
 	template_name = 'core/shop.html'
+	extra_context = {
+		'products_count': Product.objects.count()
+	}
 	# TODO : IF YOU EDIT GET, PASS CONTEXT OTHERWISE LEAVE IT BE
 
 
@@ -111,7 +114,7 @@ class RemoveFromCartView(LoginRequiredMixin, View):
 				cart_item.delete()
 				order.save()
 				# delete item from cart
-				return JsonResponse({'quantity': '0'})
+				return JsonResponse({'quantity': '0', 'order_total': str(order.get_total()),})
 			else:
 				print('2')
 				cart_item.quantity -= 1
@@ -132,7 +135,11 @@ class CartDetailsAPI(LoginRequiredMixin, View):
 			order_qs = Order.objects.filter(user=self.request.user, is_ordered=False)
 			if order_qs.exists():
 				data = {
-					'total': order_qs[0].get_total(),
-					'count': order_qs[0].get_item_count(),
+					'order_total': order_qs[0].get_total(),
+					'cart_count': order_qs[0].get_item_count(),
+
 				}
 				return JsonResponse(data)
+
+class Blog(View):
+	pass

@@ -281,8 +281,7 @@
 	                                                                    type: 'GET',
 	                                                                    url: "{% url 'core:cart-details-api' %}",
 																		success: function(get_response){
-	                                                                        $('.cart_price').text(get_response['total'])
-																			$('.cart_count').text(get_response['count'])
+	                                                                        UpdateNAVBAR();
 																		},
                                                                     })
 

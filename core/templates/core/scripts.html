@@ -10,4 +10,27 @@
 <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
 <script src="{% static 'plugins/easing/easing.js' %}"></script>
 
+<script>
 
+	function UpdateCartUI(iterator, response){
+		$('.cart_item_count').get(iterator).innerText = response['quantity'];
+        $('.cart_item_total_price').get(iterator).innerText = response['cart_item_total'];
+        $('.order_total_amount').get(0).innerText = response['order_total'];
+	}
+
+	function UpdateNAVBAR(){
+     $.ajax({
+        url: '{% url 'core:cart-details-api' %}',
+        type: 'GET',
+        success: function (response) {
+	        $('.cart_price').get(0).innerText = response['order_total'];
+	        $('.cart_count span').get(0).innerText = response['cart_count'];
+
+        }
+    });
+
+
+
+	}
+
+</script>
