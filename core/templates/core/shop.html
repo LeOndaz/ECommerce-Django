@@ -42,7 +42,8 @@
 								<li><a href="#">Computers & Laptops</a></li>
 								<li><a href="#">Cameras & Photos</a></li>
 								<li><a href="#">Hardware</a></li>
-								<li><a href="#">Smartphones & Tablets</a></li>
+
+								<li><a href="">Smartphones & Tablets</a></li>
 								<li><a href="#">TV & Audio</a></li>
 								<li><a href="#">Gadgets</a></li>
 								<li><a href="#">Car Electronics</a></li>
@@ -102,7 +103,7 @@
 										<ul>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "original-order" }'>highest rated</li>
 											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "name" }'>name</li>
-											<li class="shop_sorting_button"data-isotope-option='{ "sortBy": "price" }'>price</li>
+											<li class="shop_sorting_button" data-isotope-option='{ "sortBy": "price" }'>price</li>
 										</ul>
 									</li>
 								</ul>
@@ -113,11 +114,11 @@
 							<div class="product_grid_border"></div>
 
 
-						{% for product in object_list %}
+						{% for product in product_list %}
 								<!-- Product Item -->
 							<div class="product_item is_new">
 								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{product.image.url}}" alt=""></div>
+								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img class="lazy" src="{{product.image.url}}" alt=""></div>
 								<div class="product_content">
 									<div class="product_price"><del class="text-muted small">{{ product.previous_price }}</del> {{product.current_price}}</div>
 									<div class="product_name"><div><a href="{% url 'core:product-page' product.product_id %}" tabindex="0">{{product.title|truncatechars:'13'}}</a></div></div>
