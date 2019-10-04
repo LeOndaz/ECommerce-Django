@@ -24,7 +24,12 @@ class ShopView(ListView):
 	extra_context = {
 		'products_count': Product.objects.count()
 	}
-	# TODO : IF YOU EDIT GET, PASS CONTEXT OTHERWISE LEAVE IT BE
+	
+	def get_queryset(self):
+		try:
+			return Product.objects.filter(category=self.request.GET['category'])
+		except:
+			return Product.objects.all()
 
 
 class ProductDetailView(DetailView):
@@ -141,5 +146,10 @@ class CartDetailsAPI(LoginRequiredMixin, View):
 				}
 				return JsonResponse(data)
 
-class Blog(View):
-	pass
+
+def check_login_status(request):
+	if request.method == 'GET':
+		if request.user.is_authenticated:
+			return JsonResponse({'logged_in': True})
+		else: 
+			return JsonResponse({'logged_in': False})

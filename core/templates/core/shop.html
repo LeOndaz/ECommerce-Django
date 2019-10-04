@@ -39,16 +39,16 @@
 						<div class="sidebar_section">
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
-								<li><a href="#">Computers & Laptops</a></li>
+								<li><a href="{% url 'core:shop' %}">Computers & Laptops</a></li>
 								<li><a href="#">Cameras & Photos</a></li>
-								<li><a href="#">Hardware</a></li>
+								<li><a href="{% url 'core:shop' %}?category=PCP">Hardware</a></li>
 
-								<li><a href="">Smartphones & Tablets</a></li>
-								<li><a href="#">TV & Audio</a></li>
-								<li><a href="#">Gadgets</a></li>
-								<li><a href="#">Car Electronics</a></li>
-								<li><a href="#">Video Games & Consoles</a></li>
-								<li><a href="#">Accessories</a></li>
+								<li><a href="{% url 'core:shop' %}?category=MOB">Smartphones & Tablets</a></li>
+								<li><a href="{% url 'core:shop' %}?category=TV">TV & Audio</a></li>
+								<li><a href="{% url 'core:shop' %}?category=TECHNOLOGY">Gadgets</a></li>
+								<li><a href="{% url 'core:shop' %}?category=">Car Electronics</a></li>
+								<li><a href="{% url 'core:shop' %}?category=">Video Games & Consoles</a></li>
+								<li><a href="{% url 'core:shop' %}?category=">Accessories</a></li>
 							</ul>
 						</div>
 						<div class="sidebar_section filter_by_section">

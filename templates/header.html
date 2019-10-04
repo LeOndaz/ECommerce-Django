@@ -111,13 +111,32 @@
 										<div class="cart_count"><span>{{ user|cart_item_count }}</span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="{% url 'core:cart' %}">Cart</a></div>
+										<div class="cart_text"><a href="">Cart</a></div>
 										{% if user.is_authenticated %}
 											<div class="cart_price">${{ user|order_total }}</div>
 										{% else %}
-											<div class="cart_price">Empty</div>
+											<div class="cart_price">0</div>
 										{% endif %}
 									</div>
+
+									<script>
+										$('.cart_text').get(0).onclick = function(event){
+											event.preventDefault();
+											$.ajax({
+												url: "{% url 'core:check-login' %}",
+												type: 'GET',
+												success: function(response){
+													if (response['logged_in'] == false){
+														$('#form-register').modal('show'); 
+														}
+													else{
+														window.location.replace('{% url 'core:cart' %}')
+													}
+												}
+											})
+											}
+
+									</script>
 
 								</div>
 							</div>
@@ -191,7 +210,6 @@
 
 									</li>
 
-									<li><a href="{% url 'core:blog' %}">Blog<i class="fas fa-chevron-down"></i></a></li>
 									<li><a href="mailto:ahmeddark369@email.com">Contact Us<i class="fas fa-chevron-down"></i></a></li>
 								</ul>
 							</div>
