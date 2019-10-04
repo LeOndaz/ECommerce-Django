@@ -26,10 +26,15 @@ class ShopView(ListView):
 	}
 	
 	def get_queryset(self):
-		try:
+		values = self.request.GET
+
+		if 'sd' in values:
+			return Product.objects.filter(is_deal_of_the_week=True)
+		elif 'category' in values:
 			return Product.objects.filter(category=self.request.GET['category'])
-		except:
-			return Product.objects.all()
+		else:
+			return Product.objects.get_queryset()
+			
 
 
 class ProductDetailView(DetailView):
