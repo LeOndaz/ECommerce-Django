@@ -22,15 +22,15 @@ class ShopView(ListView):
 	model = Product
 	template_name = 'core/shop.html'
 	extra_context = {
-		'products_count': Product.objects.count()
+		'products_count': Product.objects.count(),		
 	}
 	
 	def get_queryset(self):
-		values = self.request.GET
-
-		if 'sd' in values:
+		data = self.request.GET
+		
+		if 'sd' in data:
 			return Product.objects.filter(is_deal_of_the_week=True)
-		elif 'category' in values:
+		elif 'category' in data:
 			return Product.objects.filter(category=self.request.GET['category'])
 		else:
 			return Product.objects.get_queryset()
@@ -147,7 +147,7 @@ class CartDetailsAPI(LoginRequiredMixin, View):
 				data = {
 					'order_total': order_qs[0].get_total(),
 					'cart_count': order_qs[0].get_item_count(),
-
+					'ip': self.request.META
 				}
 				return JsonResponse(data)
 
