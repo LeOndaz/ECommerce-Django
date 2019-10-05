@@ -1,6 +1,7 @@
 This project is made by Python|Django|HTML|CSS|JS|JQ|BS|Amazon S3
-Here's a demo version to illustrate what the end result is https://leondaz-projects.herokuapp.com
-to run this
+The end result is here https://leondaz-projects.herokuapp.com 
+Note: Heroku disables parts of the website because of inactivity, If you want to test, Clone the repo.
+to run this on your machine
 * Clone The repo or download it
 * Extract & open CMD at the project folder
 * Run : pip install requirements.txt
