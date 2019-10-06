@@ -1,5 +1,4 @@
 This project is made by Python|Django|HTML|CSS|JS|JQ|BS|Amazon S3
-Demo: http://leondaz-projects.herokuapp.com
 If you want to test, Clone the repo.
 to run this on your machine
 * Clone The repo or download it
